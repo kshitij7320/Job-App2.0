@@ -1,10 +1,6 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-
 const Home = () => {
   return (
     <div>
-      <Header />
       <div className="home-content">
         <h1>Welcome to Jobby</h1>
         <p>
@@ -28,7 +24,6 @@ const Home = () => {
       <div>
         <img src="/content-two.png" alt="Home Image" className="home-image" />
       </div>
-      <Footer />
     </div>
   );
 };
