@@ -12,7 +12,9 @@ const Header = () => {
             <NavLink to="/about">About</NavLink>
         </div>
         <div className="navbar-login">
-            <Button variant="outline-light" className="login-btn">Login</Button>
+            <NavLink to="/login">
+                <Button variant="outline-primary">Login</Button>
+            </NavLink>
         </div>
       
     </nav>
