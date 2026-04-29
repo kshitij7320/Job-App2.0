@@ -1,7 +1,15 @@
-
+import JobCard from "../components/JobCard"
 const Jobs = () => {
   return (
-    <div>Jobs</div>
+    <div>
+      <JobCard />
+      <JobCard />
+      <JobCard />
+      <JobCard />
+      <JobCard />
+      <JobCard />
+      <JobCard />
+    </div>
   )
 }
 

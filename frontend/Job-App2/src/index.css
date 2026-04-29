@@ -108,3 +108,50 @@ body {
     align-items: center;
     color: var(--text-color);
 }
+h1{
+  text-align: center;
+  color: var(--text-color);
+}
+.login-form {
+  display: flex;  
+  flex-direction: column;
+  gap: var(--padding-m);
+  width: 300px;
+  margin: auto;
+}
+.login-form input {
+  padding: var(--padding-m);
+  border-radius: var(--border-r-m);
+  border: 1px solid var(--secondary-color);
+} 
+.login-form button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: var(--padding-m);
+  border-radius: var(--border-r-m);
+  cursor: pointer;
+}
+.job-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: var(--border-r-l);
+  padding: var(--padding-l);
+  margin: var(--margin-l);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.job-card button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: var(--padding-m);
+  border-radius: var(--border-r-m);
+  cursor: pointer;
+}
+.about-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--padding-l);
+  padding: var(--padding-xxl);
+  color: var(--text-color);
+}
