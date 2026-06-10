@@ -1,30 +1,94 @@
+import { NavLink } from "react-router-dom";
+import { ROUTES } from "../constants/routes";
+
 const Home = () => {
+  const features = [
+    {
+      icon: "🔍",
+      title: "Smart Search",
+      description: "Find jobs that match your skills and preferences with our advanced filtering system.",
+    },
+    {
+      icon: "⚡",
+      title: "Quick Apply",
+      description: "Apply to multiple jobs in seconds with our one-click application feature.",
+    },
+    {
+      icon: "📊",
+      title: "Job Insights",
+      description: "Get salary trends, company reviews, and job market insights at a glance.",
+    },
+    {
+      icon: "🎯",
+      title: "Personalized Matches",
+      description: "Receive personalized job recommendations based on your profile and preferences.",
+    },
+    {
+      icon: "🤝",
+      title: "Direct Connect",
+      description: "Connect directly with hiring managers and recruiters for better opportunities.",
+    },
+    {
+      icon: "📱",
+      title: "Mobile Friendly",
+      description: "Search and apply for jobs on the go with our mobile-optimized platform.",
+    },
+  ];
+
   return (
-    <div>
-      <div className="home-content">
-        <h1>Welcome to Jobby</h1>
-        <p>
-          Your one-stop destination for finding your dream job. Explore
-          thousands of job listings, connect with top employers, and take the
-          next step in your career journey.
-        </p>
+    <main className="home">
+      <div className="home__container">
+        {/* Hero Section */}
+        <section className="hero">
+          <div className="hero__content">
+            <h1>Find Your Dream Job Today</h1>
+            <p>
+              Explore thousands of job listings from top companies. Your next career opportunity
+              is just a click away.
+            </p>
+            <div className="hero__cta">
+              <NavLink to={ROUTES.JOBS} className="btn btn-secondary btn-lg">
+                Browse Jobs
+              </NavLink>
+              <NavLink to={ROUTES.REGISTER} className="btn btn-outline btn-lg">
+                Create Account
+              </NavLink>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="section">
+          <h2>Why Choose JobHub?</h2>
+          <p>
+            We've built the platform job seekers love. Smart recommendations, easy applications,
+            and powerful career tools all in one place.
+          </p>
+          <div className="features-grid">
+            {features.map((feature, index) => (
+              <div key={index} className="feature-card">
+                <div className="feature-card__icon">{feature.icon}</div>
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="section" style={{ textAlign: "center" }}>
+          <h2>Ready to Start Your Career Journey?</h2>
+          <p>
+            Join thousands of job seekers finding their perfect role on JobHub.
+          </p>
+          <div style={{ marginTop: "2rem" }}>
+            <NavLink to={ROUTES.JOBS} className="btn btn-primary btn-lg">
+              Start Browsing
+            </NavLink>
+          </div>
+        </section>
       </div>
-      <div>
-        <img src="/content-one.png" alt="Home Image" className="home-image" />
-      </div>
-      <div className="content2">
-        <h1>Why Jobby?</h1>
-        <h2>Smarter way to get hired</h2>
-        <p>
-          Stop wasting time on repetitive applications. Jobby simplifies your
-          job search by combining smart recommendations, easy applications, and
-          powerful tracking — all in one platform.
-        </p>
-      </div>
-      <div>
-        <img src="/content-two.png" alt="Home Image" className="home-image" />
-      </div>
-    </div>
+    </main>
   );
 };
 
