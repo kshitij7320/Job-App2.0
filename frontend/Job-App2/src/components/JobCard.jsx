@@ -7,12 +7,8 @@ const JobCard = ({ job }) => {
     type = "Full-time",
     description = "Job Description",
     logo = "📋",
+    link = "#",
   } = job || {};
-
-  const handleApplyClick = () => {
-    // TODO: Implement apply functionality
-    console.log(`Applied for ${title} at ${company}`);
-  };
 
   return (
     <div className="job-card">
@@ -39,9 +35,14 @@ const JobCard = ({ job }) => {
 
       <div className="job-card__footer">
         <span className="job-card__salary">{salary}</span>
-        <button className="job-card__btn" onClick={handleApplyClick}>
-          Apply Now
-        </button>
+        <a
+          className="job-card__btn"
+          href={link}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Open Link
+        </a>
       </div>
     </div>
   );

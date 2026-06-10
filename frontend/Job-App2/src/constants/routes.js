@@ -3,8 +3,6 @@ export const ROUTES = {
   JOBS: "/jobs",
   JOB_DETAIL: "/jobs/:id",
   ABOUT: "/about",
-  LOGIN: "/login",
-  REGISTER: "/register",
   DASHBOARD: "/dashboard",
   PROFILE: "/profile",
 };

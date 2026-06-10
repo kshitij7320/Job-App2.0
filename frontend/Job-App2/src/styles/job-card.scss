@@ -87,6 +87,23 @@
   }
 }
 
+.job-card__salary {
+  color: get-color(primary);
+  font-size: get-font-size(lg);
+  font-weight: get-font-weight(bold);
+}
+
+.job-card__btn {
+  @include button-base(
+    get-color(primary),
+    get-color(white),
+    get-spacing(2) get-spacing(6),
+    get-radius(md),
+    get-font-size(sm)
+  );
+  text-decoration: none;
+}
+
 @include respond-down-to(sm) {
   .job-card {
     padding: get-spacing(4);
@@ -99,5 +116,15 @@
 
   .job-card__meta {
     gap: get-spacing(2);
+  }
+
+  .job-card__footer {
+    align-items: stretch;
+    flex-direction: column;
+    gap: get-spacing(4);
+  }
+
+  .job-card__btn {
+    width: 100%;
   }
 }

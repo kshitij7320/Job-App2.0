@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../constants/routes";
+import { JOB_POSTING_URL } from "../constants/config";
 
 const Home = () => {
   const features = [
@@ -50,9 +51,14 @@ const Home = () => {
               <NavLink to={ROUTES.JOBS} className="btn btn-secondary btn-lg">
                 Browse Jobs
               </NavLink>
-              <NavLink to={ROUTES.REGISTER} className="btn btn-outline btn-lg">
-                Create Account
-              </NavLink>
+              <a
+                href={JOB_POSTING_URL}
+                className="btn btn-outline btn-lg"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Post a Job
+              </a>
             </div>
           </div>
         </section>
@@ -79,7 +85,7 @@ const Home = () => {
         <section className="section" style={{ textAlign: "center" }}>
           <h2>Ready to Start Your Career Journey?</h2>
           <p>
-            Join thousands of job seekers finding their perfect role on JobHub.
+            Browse open roles or share a new opportunity with JobHub visitors.
           </p>
           <div style={{ marginTop: "2rem" }}>
             <NavLink to={ROUTES.JOBS} className="btn btn-primary btn-lg">

@@ -19,6 +19,7 @@ const Jobs = () => {
       description:
         "We're looking for an experienced React developer to lead our frontend team. You'll work on cutting-edge web applications and mentor junior developers.",
       logo: "⚛️",
+      link: "https://www.linkedin.com/jobs/search/?keywords=Senior%20React%20Developer",
     },
     {
       id: 2,
@@ -31,6 +32,7 @@ const Jobs = () => {
       description:
         "Join our creative team to design beautiful and intuitive user interfaces for mobile and web applications.",
       logo: "🎨",
+      link: "https://www.linkedin.com/jobs/search/?keywords=UX%20UI%20Designer",
     },
     {
       id: 3,
@@ -43,6 +45,7 @@ const Jobs = () => {
       description:
         "Lead our marketing initiatives and develop strategies to grow our user base. Work with a creative and data-driven team.",
       logo: "📈",
+      link: "https://www.linkedin.com/jobs/search/?keywords=Marketing%20Manager",
     },
     {
       id: 4,
@@ -55,6 +58,7 @@ const Jobs = () => {
       description:
         "Build scalable backend systems using Node.js and AWS. Work on distributed systems and microservices architecture.",
       logo: "🔧",
+      link: "https://www.linkedin.com/jobs/search/?keywords=Backend%20Developer",
     },
     {
       id: 5,
@@ -67,6 +71,7 @@ const Jobs = () => {
       description:
         "Analyze financial data, prepare reports, and provide insights to support business decisions.",
       logo: "💰",
+      link: "https://www.linkedin.com/jobs/search/?keywords=Financial%20Analyst",
     },
     {
       id: 6,
@@ -79,6 +84,7 @@ const Jobs = () => {
       description:
         "Create engaging content for blogs, social media, and marketing campaigns. Work remotely with flexibility.",
       logo: "✍️",
+      link: "https://www.linkedin.com/jobs/search/?keywords=Content%20Writer",
     },
   ];
 

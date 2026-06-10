@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { NAV_LINKS, ROUTES } from "../constants/routes";
+import { JOB_POSTING_URL } from "../constants/config";
 import { useState } from "react";
 
 const Header = () => {
@@ -43,12 +44,14 @@ const Header = () => {
           </div>
 
           <div className="header__cta">
-            <NavLink to={ROUTES.LOGIN} className="btn btn-primary btn-sm">
-              Login
-            </NavLink>
-            <NavLink to={ROUTES.REGISTER} className="btn btn-outline btn-sm">
-              Sign Up
-            </NavLink>
+            <a
+              href={JOB_POSTING_URL}
+              className="btn btn-primary btn-sm"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Post a Job
+            </a>
           </div>
         </div>
 
