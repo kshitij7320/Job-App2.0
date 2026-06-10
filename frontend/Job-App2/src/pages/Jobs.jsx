@@ -1,8 +1,6 @@
 import { useState } from "react";
 import JobCard from "../components/JobCard";
 import { JOB_CATEGORIES, JOB_TYPES } from "../constants/config";
-import "../styles/jobs-page.scss";
-
 const Jobs = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedType, setSelectedType] = useState("All");

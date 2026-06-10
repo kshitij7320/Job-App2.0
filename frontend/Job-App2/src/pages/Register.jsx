@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ROUTES } from "../constants/routes";
 import { validateEmail, validatePassword } from "../utils/validators";
-import "../styles/auth-page.scss";
 
 const Register = () => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",

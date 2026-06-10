@@ -1,7 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../constants/routes";
-import "../styles/about-page.scss";
-
 const About = () => {
   const teamMembers = [
     {

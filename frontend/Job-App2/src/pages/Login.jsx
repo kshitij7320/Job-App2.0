@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ROUTES } from "../constants/routes";
 import { validateEmail, validatePassword } from "../utils/validators";
-import "../styles/auth-page.scss";
 
 const Login = () => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);

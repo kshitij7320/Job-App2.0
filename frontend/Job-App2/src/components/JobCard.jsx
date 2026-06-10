@@ -1,5 +1,3 @@
-import "../styles/job-card.scss";
-
 const JobCard = ({ job }) => {
   const {
     title = "Job Title",

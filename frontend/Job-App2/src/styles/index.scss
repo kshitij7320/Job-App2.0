@@ -5,23 +5,22 @@
 // This is imported by main.jsx as the main stylesheet
 
 // 1. First: Variables (no imports)
-@import "./variables";
+@import "./_variables.scss";
 
 // 2. Then: Functions (uses variables)
-@import "./functions";
+@import "./_functions.scss";
 
 // 3. Then: Mixins (uses variables and functions)
-@import "./mixins";
+@import "./_mixins.scss";
 
 // 4. Finally: All component and page styles
-@import "./global";
-@import "./buttons";
-@import "./forms";
-@import "./header";
-@import "./footer";
-@import "./job-card";
-@import "./pages";
-@import "./jobs-page";
-@import "./auth-page";
-@import "./about-page";
-
+@import "./global.scss";
+@import "./buttons.scss";
+@import "./forms.scss";
+@import "./header.scss";
+@import "./footer.scss";
+@import "./job-card.scss";
+@import "./pages.scss";
+@import "./jobs-page.scss";
+@import "./auth-page.scss";
+@import "./about-page.scss";
