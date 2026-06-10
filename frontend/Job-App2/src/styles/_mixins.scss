@@ -1,0 +1,283 @@
+// ============================================================
+// MIXINS - Reusable SCSS Code Blocks
+// ============================================================
+// Note: Variables and functions must be imported before this file
+
+// Responsive breakpoints
+@mixin respond-to($breakpoint) {
+  @media (min-width: get-breakpoint($breakpoint)) {
+    @content;
+  }
+}
+
+@mixin respond-down-to($breakpoint) {
+  @media (max-width: get-breakpoint($breakpoint) - 1px) {
+    @content;
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center($direction: row) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: $direction;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: flex-start;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Grid utilities
+@mixin grid-auto-fit($min-size: 250px, $gap: get-spacing(6)) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min-size, 1fr));
+  gap: $gap;
+}
+
+@mixin grid-auto-fill($min-size: 250px, $gap: get-spacing(6)) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($min-size, 1fr));
+  gap: $gap;
+}
+
+// Text utilities
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Shadow utilities
+@mixin shadow($level: base) {
+  box-shadow: get-shadow($level);
+}
+
+@mixin shadow-hover {
+  transition: box-shadow get-transition(base);
+
+  &:hover {
+    @include shadow(md);
+  }
+}
+
+// Button styles
+@mixin button-reset {
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+@mixin button-base(
+  $bg: get-color(primary),
+  $color: get-color(white),
+  $padding: get-spacing(3) get-spacing(6),
+  $border-radius: get-radius(md),
+  $font-size: get-font-size(sm),
+  $font-weight: get-font-weight(semibold)
+) {
+  @include button-reset;
+  background-color: $bg;
+  color: $color;
+  padding: $padding;
+  border-radius: $border-radius;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  border: 2px solid $bg;
+  transition: all get-transition(base);
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Input styles
+@mixin input-base {
+  padding: get-spacing(3) get-spacing(4);
+  border: 1px solid get-color(gray-300);
+  border-radius: get-radius(md);
+  font-family: inherit;
+  font-size: get-font-size(base);
+  color: get-color(gray-900);
+  transition: all get-transition(base);
+
+  &:focus {
+    outline: none;
+    border-color: get-color(primary);
+    box-shadow: 0 0 0 3px rgba(get-color(primary), 0.1);
+  }
+
+  &::placeholder {
+    color: get-color(gray-400);
+  }
+
+  &:disabled {
+    background-color: get-color(gray-100);
+    cursor: not-allowed;
+  }
+}
+
+// Card styles
+@mixin card($padding: get-spacing(6), $border-radius: get-radius(lg)) {
+  background-color: get-color(white);
+  padding: $padding;
+  border-radius: $border-radius;
+  border: 1px solid get-color(gray-200);
+  transition: all get-transition(base);
+
+  &:hover {
+    border-color: get-color(primary);
+    @include shadow(md);
+    transform: translateY(-2px);
+  }
+}
+
+// Container
+@mixin container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 get-spacing(4);
+
+  @include respond-to(md) {
+    max-width: get-breakpoint(md);
+  }
+
+  @include respond-to(lg) {
+    max-width: get-breakpoint(lg);
+  }
+
+  @include respond-to(xl) {
+    max-width: get-breakpoint(xl);
+  }
+
+  @include respond-to(2xl) {
+    max-width: get-breakpoint(2xl);
+  }
+}
+
+// Scrollbar styling
+@mixin scrollbar(
+  $track-bg: get-color(gray-100),
+  $thumb-bg: get-color(gray-400),
+  $thumb-bg-hover: get-color(gray-500)
+) {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-bg;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-bg;
+    border-radius: get-radius(full);
+
+    &:hover {
+      background: $thumb-bg-hover;
+    }
+  }
+}
+
+// Gradient background
+@mixin gradient($start-color, $end-color, $angle: 135deg) {
+  background: linear-gradient($angle, $start-color 0%, $end-color 100%);
+}
+
+// Centering utilities
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin absolute-center-x {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin absolute-center-y {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// Animation utilities
+@mixin transition($property: all, $duration: get-transition(base)) {
+  transition-property: $property;
+  transition-duration: $duration;
+  transition-timing-function: ease-in-out;
+}
+
+// Opacity transition
+@mixin fade-in($duration: get-transition(base)) {
+  animation: fadeIn $duration ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+// Slide up animation
+@mixin slide-up($duration: get-transition(base)) {
+  animation: slideUp $duration ease-out;
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// Clearfix
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

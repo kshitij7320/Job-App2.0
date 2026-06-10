@@ -1,0 +1,138 @@
+// ============================================================
+// HEADER - Navigation Header Component
+// ============================================================
+// Note: Variables, functions, and mixins are imported by index.scss
+
+.header {
+  background-color: get-color(white);
+  box-shadow: get-shadow(sm);
+  position: sticky;
+  top: 0;
+  z-index: get-z-index(fixed);
+}
+
+.header__inner {
+  @include flex-between;
+  padding: get-spacing(4) 0;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: get-spacing(4);
+  padding-right: get-spacing(4);
+}
+
+.header__logo {
+  @include flex-center;
+  gap: get-spacing(2);
+  font-size: get-font-size(xl);
+  font-weight: get-font-weight(bold);
+  color: get-color(primary);
+  text-decoration: none;
+
+  img {
+    height: 40px;
+    width: auto;
+  }
+}
+
+.header__nav {
+  @include flex-center;
+  gap: get-spacing(8);
+  flex: 1;
+  margin-left: get-spacing(12);
+}
+
+.header__nav-link {
+  color: get-color(gray-600);
+  font-weight: get-font-weight(medium);
+  font-size: get-font-size(sm);
+  @include transition(color);
+
+  &:hover {
+    color: get-color(primary);
+  }
+
+  &.active {
+    color: get-color(primary);
+    border-bottom: 2px solid get-color(primary);
+    padding-bottom: get-spacing(2);
+  }
+}
+
+.header__actions {
+  @include flex-center;
+  gap: get-spacing(4);
+}
+
+.header__search {
+  display: none;
+  @include flex-center;
+  background-color: get-color(gray-100);
+  border-radius: get-radius(lg);
+  padding: get-spacing(2) get-spacing(4);
+  width: 300px;
+
+  @include respond-to(md) {
+    display: flex;
+  }
+
+  input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: get-font-size(sm);
+    color: get-color(gray-900);
+
+    &::placeholder {
+      color: get-color(gray-400);
+    }
+  }
+}
+
+.header__search-icon {
+  color: get-color(gray-400);
+  margin-left: get-spacing(2);
+}
+
+.header__cta {
+  @include flex-center;
+  gap: get-spacing(4);
+}
+
+.header__menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: get-font-size(xl);
+  cursor: pointer;
+  color: get-color(gray-900);
+
+  @include respond-down-to(md) {
+    display: block;
+  }
+}
+
+// Mobile Menu
+@include respond-down-to(md) {
+  .header__nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: get-color(white);
+    flex-direction: column;
+    gap: get-spacing(4);
+    padding: get-spacing(6);
+    border-bottom: 1px solid get-color(gray-200);
+
+    &.active {
+      display: flex;
+    }
+  }
+
+  .header__search {
+    width: 100%;
+    margin-bottom: get-spacing(4);
+  }
+}

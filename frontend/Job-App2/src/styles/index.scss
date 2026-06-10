@@ -1,0 +1,27 @@
+// ============================================================
+// MAIN SCSS ENTRY POINT
+// ============================================================
+// Single file that imports everything in correct order
+// This is imported by main.jsx as the main stylesheet
+
+// 1. First: Variables (no imports)
+@import "./variables";
+
+// 2. Then: Functions (uses variables)
+@import "./functions";
+
+// 3. Then: Mixins (uses variables and functions)
+@import "./mixins";
+
+// 4. Finally: All component and page styles
+@import "./global";
+@import "./buttons";
+@import "./forms";
+@import "./header";
+@import "./footer";
+@import "./job-card";
+@import "./pages";
+@import "./jobs-page";
+@import "./auth-page";
+@import "./about-page";
+

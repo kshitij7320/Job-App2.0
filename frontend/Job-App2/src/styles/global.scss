@@ -1,0 +1,113 @@
+// ============================================================
+// GLOBAL STYLES - Base Styles and Resets
+// ============================================================
+// Note: Variables, functions, and mixins are imported by index.scss
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: get-font-size(base);
+  line-height: get-line-height(normal);
+  color: get-color(gray-900);
+  background-color: get-color(white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: get-color(primary);
+  text-decoration: none;
+  @include transition(color);
+
+  &:hover {
+    color: get-color(primary-light);
+  }
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: get-font-weight(bold);
+  line-height: get-line-height(tight);
+  color: get-color(gray-900);
+}
+
+h1 {
+  font-size: get-font-size(4xl);
+}
+
+h2 {
+  font-size: get-font-size(3xl);
+}
+
+h3 {
+  font-size: get-font-size(2xl);
+}
+
+h4 {
+  font-size: get-font-size(xl);
+}
+
+h5 {
+  font-size: get-font-size(lg);
+}
+
+h6 {
+  font-size: get-font-size(base);
+}
+
+p {
+  color: get-color(gray-600);
+  line-height: get-line-height(relaxed);
+}
+
+// Container
+.container {
+  @include container;
+}
+
+// Utility Classes
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.transition-all {
+  @include transition;
+}

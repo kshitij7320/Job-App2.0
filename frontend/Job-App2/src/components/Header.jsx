@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { NAV_LINKS, ROUTES } from "../constants/routes";
 import { useState } from "react";
-import "../styles/header.css";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

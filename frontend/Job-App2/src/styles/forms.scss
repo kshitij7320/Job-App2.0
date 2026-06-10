@@ -1,0 +1,49 @@
+// ============================================================
+// FORMS - Form Input and Form Group Styles
+// ============================================================
+// Note: Variables, functions, and mixins are imported by index.scss
+
+.form-group {
+  @include flex-column;
+  gap: get-spacing(2);
+  margin-bottom: get-spacing(6);
+}
+
+label {
+  font-weight: get-font-weight(medium);
+  color: get-color(gray-900);
+  font-size: get-font-size(sm);
+}
+
+input,
+textarea,
+select {
+  @include input-base;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-error {
+  color: get-color(error);
+  font-size: get-font-size(sm);
+  margin-top: get-spacing(1);
+}
+
+.form-success {
+  color: get-color(success);
+  font-size: get-font-size(sm);
+  margin-top: get-spacing(1);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: get-spacing(6);
+
+  @include respond-down-to(sm) {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,199 @@
+// ============================================================
+// ABOUT PAGE - About Page Styles
+// ============================================================
+// Note: Variables, functions, and mixins are imported by index.scss
+
+.about-page {
+  padding: get-spacing(16) get-spacing(4);
+  background-color: get-color(gray-50);
+}
+
+.about-page__container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.about-hero {
+  text-align: center;
+  padding: get-spacing(20) 0;
+  color: get-color(primary);
+
+  h1 {
+    font-size: get-font-size(5xl);
+    margin-bottom: get-spacing(6);
+    color: get-color(primary);
+  }
+
+  p {
+    font-size: get-font-size(xl);
+    color: get-color(gray-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.about-section {
+  margin-bottom: get-spacing(32);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: get-spacing(16);
+  align-items: center;
+}
+
+.about-text {
+  h2 {
+    font-size: get-font-size(3xl);
+    margin-bottom: get-spacing(6);
+  }
+
+  p {
+    margin-bottom: get-spacing(6);
+    line-height: get-line-height(relaxed);
+  }
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: get-spacing(6);
+}
+
+.stat-card {
+  background-color: get-color(white);
+  padding: get-spacing(8);
+  border-radius: get-radius(lg);
+  text-align: center;
+  @include shadow(sm);
+}
+
+.stat-number {
+  font-size: get-font-size(4xl);
+  font-weight: get-font-weight(bold);
+  color: get-color(primary);
+}
+
+.stat-label {
+  color: get-color(gray-600);
+  font-size: get-font-size(sm);
+  margin-top: get-spacing(2);
+}
+
+.values-grid {
+  @include grid-auto-fit(300px, get-spacing(8));
+}
+
+.value-card {
+  background-color: get-color(white);
+  padding: get-spacing(8);
+  border-radius: get-radius(lg);
+  text-align: center;
+  @include shadow(sm);
+  @include transition;
+
+  &:hover {
+    @include shadow(md);
+    transform: translateY(-4px);
+  }
+}
+
+.value-icon {
+  font-size: get-font-size(4xl);
+  margin-bottom: get-spacing(4);
+}
+
+.value-card h3 {
+  margin-bottom: get-spacing(3);
+}
+
+.value-card p {
+  color: get-color(gray-600);
+  font-size: get-font-size(sm);
+}
+
+.team-grid {
+  @include grid-auto-fit(250px, get-spacing(8));
+}
+
+.team-card {
+  background-color: get-color(white);
+  padding: get-spacing(8);
+  border-radius: get-radius(lg);
+  text-align: center;
+  @include shadow(sm);
+  @include transition;
+
+  &:hover {
+    @include shadow(md);
+    transform: translateY(-4px);
+  }
+}
+
+.team-avatar {
+  font-size: 4rem;
+  margin-bottom: get-spacing(4);
+}
+
+.team-card h3 {
+  margin-bottom: get-spacing(2);
+}
+
+.team-role {
+  color: get-color(primary);
+  font-weight: get-font-weight(semibold);
+  font-size: get-font-size(sm);
+  margin-bottom: get-spacing(3);
+}
+
+.team-bio {
+  color: get-color(gray-600);
+  font-size: get-font-size(sm);
+}
+
+.about-cta {
+  @include gradient(get-color(primary), get-color(primary-light));
+  color: get-color(white);
+  padding: get-spacing(16);
+  border-radius: get-radius(xl);
+  text-align: center;
+
+  h2 {
+    color: get-color(white);
+    margin-bottom: get-spacing(4);
+  }
+
+  p {
+    color: rgba(get-color(white), 0.9);
+    margin-bottom: get-spacing(8);
+  }
+
+  .btn {
+    background-color: get-color(white);
+    color: get-color(primary);
+    border-color: get-color(white);
+
+    &:hover {
+      background-color: get-color(gray-100);
+    }
+  }
+}
+
+@include respond-down-to(md) {
+  .about-hero h1 {
+    font-size: get-font-size(3xl);
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+}

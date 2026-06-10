@@ -1,4 +1,4 @@
-import "../styles/job-card.css";
+import "../styles/job-card.scss";
 
 const JobCard = ({ job }) => {
   const {

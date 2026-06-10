@@ -1,0 +1,99 @@
+// ============================================================
+// PAGES - Home Page and Page Layout Styles
+// ============================================================
+// Note: Variables, functions, and mixins are imported by index.scss
+
+.hero {
+  @include gradient(get-color(primary), get-color(primary-light));
+  color: get-color(white);
+  padding: get-spacing(20) get-spacing(4);
+  text-align: center;
+  border-radius: get-radius(2xl);
+  margin-bottom: get-spacing(20);
+}
+
+.hero__content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: get-font-size(5xl);
+  color: get-color(white);
+  margin-bottom: get-spacing(6);
+  line-height: get-line-height(tight);
+}
+
+.hero p {
+  font-size: get-font-size(xl);
+  color: rgba(get-color(white), 0.9);
+  margin-bottom: get-spacing(8);
+  line-height: get-line-height(relaxed);
+}
+
+.hero__cta {
+  @include flex-center;
+  gap: get-spacing(4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+// Home Page
+.home {
+  padding: get-spacing(16) get-spacing(4);
+}
+
+.home__container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section {
+  margin-bottom: get-spacing(20);
+
+  h2 {
+    margin-bottom: get-spacing(6);
+    color: get-color(gray-900);
+  }
+
+  p {
+    margin-bottom: get-spacing(8);
+  }
+}
+
+.features-grid {
+  @include grid-auto-fit(300px, get-spacing(8));
+  margin: get-spacing(12) 0;
+}
+
+.feature-card {
+  @include card(get-spacing(8), get-radius(lg));
+  text-align: center;
+
+  &__icon {
+    font-size: get-font-size(4xl);
+    margin-bottom: get-spacing(4);
+  }
+
+  h3 {
+    margin-bottom: get-spacing(3);
+  }
+
+  p {
+    color: get-color(gray-600);
+  }
+}
+
+@include respond-down-to(md) {
+  .hero h1 {
+    font-size: get-font-size(3xl);
+  }
+
+  .hero p {
+    font-size: get-font-size(base);
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}

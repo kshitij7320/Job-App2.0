@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ROUTES } from "../constants/routes";
 import { validateEmail, validatePassword } from "../utils/validators";
-import "../styles/auth-page.css";
+import "../styles/auth-page.scss";
 
 const Login = () => {
   const navigate = useNavigate();

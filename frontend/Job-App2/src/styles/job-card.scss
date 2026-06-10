@@ -1,0 +1,103 @@
+// ============================================================
+// JOB CARD - Job Card Component Styles
+// ============================================================
+// Note: Variables, functions, and mixins are imported by index.scss
+
+.job-card {
+  @include card(get-spacing(6), get-radius(lg));
+  @include flex-column;
+  gap: get-spacing(4);
+  height: 100%;
+
+  &:hover {
+    @include shadow(lg);
+    transform: translateY(-4px);
+  }
+}
+
+.job-card__header {
+  @include flex-between;
+  margin-bottom: get-spacing(4);
+}
+
+.job-card__logo {
+  width: 48px;
+  height: 48px;
+  @include flex-center;
+  background-color: get-color(gray-100);
+  border-radius: get-radius(md);
+  font-size: get-font-size(xl);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: get-radius(md);
+  }
+}
+
+.job-card__header-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.job-card__title {
+  font-size: get-font-size(lg);
+  font-weight: get-font-weight(bold);
+  margin: 0;
+  color: get-color(gray-900);
+}
+
+.job-card__company {
+  font-size: get-font-size(sm);
+  color: get-color(gray-600);
+  margin: 0;
+}
+
+.job-card__meta {
+  @include flex-center;
+  flex-wrap: wrap;
+  gap: get-spacing(4);
+  padding: get-spacing(4) 0;
+  border-top: 1px solid get-color(gray-200);
+  border-bottom: 1px solid get-color(gray-200);
+  font-size: get-font-size(sm);
+  color: get-color(gray-600);
+
+  span {
+    @include flex-center;
+    gap: get-spacing(1);
+  }
+}
+
+.job-card__description {
+  @include text-clamp(2);
+  color: get-color(gray-700);
+  line-height: get-line-height(relaxed);
+  margin: 0;
+}
+
+.job-card__footer {
+  @include flex-between;
+  margin-top: auto;
+  padding-top: get-spacing(4);
+
+  .btn {
+    margin: 0;
+  }
+}
+
+@include respond-down-to(sm) {
+  .job-card {
+    padding: get-spacing(4);
+  }
+
+  .job-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .job-card__meta {
+    gap: get-spacing(2);
+  }
+}

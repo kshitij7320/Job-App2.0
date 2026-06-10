@@ -1,0 +1,100 @@
+// ============================================================
+// FUNCTIONS - SCSS Functions for Dynamic Values
+// ============================================================
+// Note: Variables must be imported before this file
+
+// Get value from map
+@function get-color($key) {
+  @if map-has-key($colors, $key) {
+    @return map-get($colors, $key);
+  } @else {
+    @error "Color '#{$key}' not found in colors map";
+  }
+}
+
+@function get-spacing($key) {
+  @if map-has-key($spacing, $key) {
+    @return map-get($spacing, $key);
+  } @else {
+    @error "Spacing '#{$key}' not found in spacing map";
+  }
+}
+
+@function get-font-size($key) {
+  @if map-has-key($font-sizes, $key) {
+    @return map-get($font-sizes, $key);
+  } @else {
+    @error "Font size '#{$key}' not found in font-sizes map";
+  }
+}
+
+@function get-font-weight($key) {
+  @if map-has-key($font-weights, $key) {
+    @return map-get($font-weights, $key);
+  } @else {
+    @error "Font weight '#{$key}' not found in font-weights map";
+  }
+}
+
+@function get-line-height($key) {
+  @if map-has-key($line-heights, $key) {
+    @return map-get($line-heights, $key);
+  } @else {
+    @error "Line height '#{$key}' not found in line-heights map";
+  }
+}
+
+@function get-radius($key) {
+  @if map-has-key($border-radius, $key) {
+    @return map-get($border-radius, $key);
+  } @else {
+    @error "Border radius '#{$key}' not found in border-radius map";
+  }
+}
+
+@function get-shadow($key) {
+  @if map-has-key($shadows, $key) {
+    @return map-get($shadows, $key);
+  } @else {
+    @error "Shadow '#{$key}' not found in shadows map";
+  }
+}
+
+@function get-transition($key) {
+  @if map-has-key($transitions, $key) {
+    @return map-get($transitions, $key);
+  } @else {
+    @error "Transition '#{$key}' not found in transitions map";
+  }
+}
+
+@function get-z-index($key) {
+  @if map-has-key($z-index, $key) {
+    @return map-get($z-index, $key);
+  } @else {
+    @error "Z-index '#{$key}' not found in z-index map";
+  }
+}
+
+@function get-breakpoint($key) {
+  @if map-has-key($breakpoints, $key) {
+    @return map-get($breakpoints, $key);
+  } @else {
+    @error "Breakpoint '#{$key}' not found in breakpoints map";
+  }
+}
+
+// Lighten color by percentage
+@function lighten-color($color, $percent) {
+  @return lighten($color, $percent);
+}
+
+// Darken color by percentage
+@function darken-color($color, $percent) {
+  @return darken($color, $percent);
+}
+
+// Opacity
+@function opacity($color, $value) {
+  @return rgba($color, $value);
+}
