@@ -2,35 +2,108 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// register
-exports.register = async (req, res) => {
-  const { name, email, password } = req.body;
-
-  const userExists = await User.findOne({ email });
-  if (userExists) return res.status(400).json({ msg: "User exists" });
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  const user = await User.create({
-    name,
-    email,
-    password: hashedPassword,
+const createToken = (userId) => {
+  return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
+    expiresIn: "7d",
   });
+};
 
-  res.json(user);
+const sendUserResponse = (res, statusCode, user, token) => {
+  res.status(statusCode).json({
+    success: true,
+    token,
+    user: {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      resume: user.resume,
+    },
+  });
+};
+
+// register
+exports.register = async (req, res, next) => {
+  try {
+    const { name, email, password, role } = req.body;
+
+    if (!name || !email || !password) {
+      res.status(400);
+      throw new Error("Name, email and password are required");
+    }
+
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+      res.status(400);
+      throw new Error("User already exists");
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+      role,
+    });
+
+    const token = createToken(user._id);
+    sendUserResponse(res, 201, user, token);
+  } catch (error) {
+    next(error);
+  }
 };
 
 // login
-exports.login = async (req, res) => {
-  const { email, password } = req.body;
+exports.login = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
 
-  const user = await User.findOne({ email });
-  if (!user) return res.status(400).json({ msg: "Invalid credentials" });
+    if (!email || !password) {
+      res.status(400);
+      throw new Error("Email and password are required");
+    }
 
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
+    const user = await User.findOne({ email }).select("+password");
+    if (!user) {
+      res.status(401);
+      throw new Error("Invalid email or password");
+    }
 
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      res.status(401);
+      throw new Error("Invalid email or password");
+    }
 
-  res.json({ token });
+    const token = createToken(user._id);
+    sendUserResponse(res, 200, user, token);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get current logged-in user
+exports.getMe = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    if (!user) {
+      res.status(404);
+      throw new Error("User not found");
+    }
+
+    res.json({
+      success: true,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        resume: user.resume,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
 };
