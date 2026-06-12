@@ -60,6 +60,23 @@ exports.getJobs = async (req, res, next) => {
   }
 };
 
+// GET MY JOBS
+exports.getMyJobs = async (req, res, next) => {
+  try {
+    const jobs = await Job.find({ createdBy: req.user.id })
+      .populate("createdBy", "name email")
+      .sort({ createdAt: -1 });
+
+    res.json({
+      success: true,
+      count: jobs.length,
+      jobs,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // GET SINGLE JOB
 exports.getJobById = async (req, res, next) => {
   try {

@@ -107,3 +107,46 @@ exports.getMe = async (req, res, next) => {
     next(error);
   }
 };
+
+// update current user profile
+exports.updateMe = async (req, res, next) => {
+  try {
+    const { name, email, resume } = req.body;
+    const updates = {};
+
+    if (name) updates.name = name;
+    if (email) updates.email = email;
+    if (resume) updates.resume = resume;
+
+    if (Object.keys(updates).length === 0) {
+      res.status(400);
+      throw new Error("No valid fields provided for update");
+    }
+
+    if (email) {
+      const existingUser = await User.findOne({ email });
+      if (existingUser && existingUser._id.toString() !== req.user.id.toString()) {
+        res.status(400);
+        throw new Error("Email already in use");
+      }
+    }
+
+    const user = await User.findByIdAndUpdate(req.user.id, updates, {
+      new: true,
+      runValidators: true,
+    });
+
+    res.json({
+      success: true,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        resume: user.resume,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
