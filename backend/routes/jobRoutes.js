@@ -15,10 +15,10 @@ const allowedRoles = require("../middleware/roleMiddleware");
 
 // public
 router.get("/", getJobs);
-router.get("/:id", getJobById);
 
 // protected
-router.get("/me", auth, getMyJobs);
+router.get("/me", auth, allowedRoles("recruiter", "admin"), getMyJobs);
+router.get("/:id", getJobById);
 router.post("/", auth, allowedRoles("recruiter", "admin"), createJob);
 router.put("/:id", auth, allowedRoles("recruiter", "admin"), updateJob);
 router.delete("/:id", auth, allowedRoles("recruiter", "admin"), deleteJob);

@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import Jobs from "./pages/Jobs";
 import About from "./pages/About";
+import PostJob from "./pages/PostJob";
 import { ROUTES } from "./constants/routes";
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         <Route path={ROUTES.HOME} element={<Home />} />
         <Route path={ROUTES.ABOUT} element={<About />} />
         <Route path={ROUTES.JOBS} element={<Jobs />} />
+        <Route path={ROUTES.POST_JOB} element={<PostJob />} />
       </Routes>
       <Footer />
     </>

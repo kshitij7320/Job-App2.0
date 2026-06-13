@@ -1,38 +1,43 @@
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../constants/routes";
-import { JOB_POSTING_URL } from "../constants/config";
 
 const Home = () => {
   const features = [
     {
       icon: "🔍",
       title: "Smart Search",
-      description: "Find jobs that match your skills and preferences with our advanced filtering system.",
+      description:
+        "Find jobs that match your skills and preferences with our advanced filtering system.",
     },
     {
       icon: "⚡",
       title: "Quick Apply",
-      description: "Apply to multiple jobs in seconds with our one-click application feature.",
+      description:
+        "Apply to multiple jobs in seconds with our one-click application feature.",
     },
     {
       icon: "📊",
       title: "Job Insights",
-      description: "Get salary trends, company reviews, and job market insights at a glance.",
+      description:
+        "Get salary trends, company reviews, and job market insights at a glance.",
     },
     {
       icon: "🎯",
       title: "Personalized Matches",
-      description: "Receive personalized job recommendations based on your profile and preferences.",
+      description:
+        "Receive personalized job recommendations based on your profile and preferences.",
     },
     {
       icon: "🤝",
       title: "Direct Connect",
-      description: "Connect directly with hiring managers and recruiters for better opportunities.",
+      description:
+        "Connect directly with hiring managers and recruiters for better opportunities.",
     },
     {
       icon: "📱",
       title: "Mobile Friendly",
-      description: "Search and apply for jobs on the go with our mobile-optimized platform.",
+      description:
+        "Search and apply for jobs on the go with our mobile-optimized platform.",
     },
   ];
 
@@ -44,21 +49,16 @@ const Home = () => {
           <div className="hero__content">
             <h1>Find Your Dream Job Today</h1>
             <p>
-              Explore thousands of job listings from top companies. Your next career opportunity
-              is just a click away.
+              Explore thousands of job listings from top companies. Your next
+              career opportunity is just a click away.
             </p>
             <div className="hero__cta">
               <NavLink to={ROUTES.JOBS} className="btn btn-secondary btn-lg">
                 Browse Jobs
               </NavLink>
-              <a
-                href={JOB_POSTING_URL}
-                className="btn btn-outline btn-lg"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <NavLink to={ROUTES.POST_JOB} className="btn btn-outline btn-lg">
                 Post a Job
-              </a>
+              </NavLink>
             </div>
           </div>
         </section>
@@ -67,8 +67,8 @@ const Home = () => {
         <section className="section">
           <h2>Why Choose JobHub?</h2>
           <p>
-            We've built the platform job seekers love. Smart recommendations, easy applications,
-            and powerful career tools all in one place.
+            We've built the platform job seekers love. Smart recommendations,
+            easy applications, and powerful career tools all in one place.
           </p>
           <div className="features-grid">
             {features.map((feature, index) => (
@@ -84,9 +84,7 @@ const Home = () => {
         {/* CTA Section */}
         <section className="section" style={{ textAlign: "center" }}>
           <h2>Ready to Start Your Career Journey?</h2>
-          <p>
-            Browse open roles or share a new opportunity with JobHub visitors.
-          </p>
+          <p>Browse open roles or share a new opportunity with JobHub visitors.</p>
           <div style={{ marginTop: "2rem" }}>
             <NavLink to={ROUTES.JOBS} className="btn btn-primary btn-lg">
               Start Browsing

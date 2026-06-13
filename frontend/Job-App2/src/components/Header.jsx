@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { NAV_LINKS, ROUTES } from "../constants/routes";
-import { JOB_POSTING_URL } from "../constants/config";
 import { useState } from "react";
 
 const Header = () => {
@@ -44,14 +43,13 @@ const Header = () => {
           </div>
 
           <div className="header__cta">
-            <a
-              href={JOB_POSTING_URL}
+            <NavLink
+              to={ROUTES.POST_JOB}
               className="btn btn-primary btn-sm"
-              target="_blank"
-              rel="noreferrer"
+              onClick={closeMobileMenu}
             >
               Post a Job
-            </a>
+            </NavLink>
           </div>
         </div>
 

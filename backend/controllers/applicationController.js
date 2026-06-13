@@ -6,13 +6,13 @@ exports.applyJob = async (req, res, next) => {
   try {
     const { jobId } = req.body;
 
-    if (\!jobId) {
+    if (!jobId) {
       res.status(400);
       throw new Error("Job ID is required");
     }
 
     const job = await Job.findById(jobId);
-    if (\!job) {
+    if (!job) {
       res.status(404);
       throw new Error("Job not found");
     }
@@ -81,14 +81,14 @@ exports.getApplicationsByJob = async (req, res, next) => {
     const { jobId } = req.params;
     const job = await Job.findById(jobId);
 
-    if (\!job) {
+    if (!job) {
       res.status(404);
       throw new Error("Job not found");
     }
 
     if (
-      req.user.role \!== "admin" &&
-      job.createdBy.toString() \!== req.user.id.toString()
+      req.user.role !== "admin" &&
+      job.createdBy.toString() !== req.user.id.toString()
     ) {
       res.status(403);
       throw new Error("You can only view applications for your own jobs");
@@ -114,7 +114,7 @@ exports.updateApplicationStatus = async (req, res, next) => {
     const { status } = req.body;
     const validStatuses = ["applied", "interview", "rejected"];
 
-    if (\!status || \!validStatuses.includes(status)) {
+    if (!status || !validStatuses.includes(status)) {
       res.status(400);
       throw new Error("Invalid status");
     }
@@ -124,14 +124,14 @@ exports.updateApplicationStatus = async (req, res, next) => {
       select: "createdBy",
     });
 
-    if (\!app) {
+    if (!app) {
       res.status(404);
       throw new Error("Application not found");
     }
 
     if (
-      req.user.role \!== "admin" &&
-      app.jobId.createdBy.toString() \!== req.user.id.toString()
+      req.user.role !== "admin" &&
+      app.jobId.createdBy.toString() !== req.user.id.toString()
     ) {
       res.status(403);
       throw new Error("You can update only applications for your own jobs");

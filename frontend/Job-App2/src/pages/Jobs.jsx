@@ -1,107 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import JobCard from "../components/JobCard";
 import { JOB_CATEGORIES, JOB_TYPES } from "../constants/config";
+import { jobService } from "../services/api";
+
 const Jobs = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedType, setSelectedType] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  // Sample job data - Replace with API call
-  const sampleJobs = [
-    {
-      id: 1,
-      title: "Senior React Developer",
-      company: "Tech Corp",
-      location: "San Francisco, CA",
-      salary: "$120,000 - $150,000",
-      type: "Full-time",
-      category: "Technology",
-      description:
-        "We're looking for an experienced React developer to lead our frontend team. You'll work on cutting-edge web applications and mentor junior developers.",
-      logo: "⚛️",
-      link: "https://www.linkedin.com/jobs/search/?keywords=Senior%20React%20Developer",
-    },
-    {
-      id: 2,
-      title: "UX/UI Designer",
-      company: "Design Studio",
-      location: "New York, NY",
-      salary: "$80,000 - $100,000",
-      type: "Full-time",
-      category: "Technology",
-      description:
-        "Join our creative team to design beautiful and intuitive user interfaces for mobile and web applications.",
-      logo: "🎨",
-      link: "https://www.linkedin.com/jobs/search/?keywords=UX%20UI%20Designer",
-    },
-    {
-      id: 3,
-      title: "Marketing Manager",
-      company: "Growth Co",
-      location: "Remote",
-      salary: "$70,000 - $90,000",
-      type: "Full-time",
-      category: "Marketing",
-      description:
-        "Lead our marketing initiatives and develop strategies to grow our user base. Work with a creative and data-driven team.",
-      logo: "📈",
-      link: "https://www.linkedin.com/jobs/search/?keywords=Marketing%20Manager",
-    },
-    {
-      id: 4,
-      title: "Backend Developer",
-      company: "Cloud Systems",
-      location: "Austin, TX",
-      salary: "$100,000 - $130,000",
-      type: "Full-time",
-      category: "Technology",
-      description:
-        "Build scalable backend systems using Node.js and AWS. Work on distributed systems and microservices architecture.",
-      logo: "🔧",
-      link: "https://www.linkedin.com/jobs/search/?keywords=Backend%20Developer",
-    },
-    {
-      id: 5,
-      title: "Financial Analyst",
-      company: "Finance Plus",
-      location: "Boston, MA",
-      salary: "$75,000 - $95,000",
-      type: "Full-time",
-      category: "Finance",
-      description:
-        "Analyze financial data, prepare reports, and provide insights to support business decisions.",
-      logo: "💰",
-      link: "https://www.linkedin.com/jobs/search/?keywords=Financial%20Analyst",
-    },
-    {
-      id: 6,
-      title: "Content Writer",
-      company: "Media Hub",
-      location: "Remote",
-      salary: "$40,000 - $60,000",
-      type: "Part-time",
-      category: "Marketing",
-      description:
-        "Create engaging content for blogs, social media, and marketing campaigns. Work remotely with flexibility.",
-      logo: "✍️",
-      link: "https://www.linkedin.com/jobs/search/?keywords=Content%20Writer",
-    },
-  ];
+  useEffect(() => {
+    const fetchJobs = async () => {
+      setLoading(true);
+      setError("");
 
-  const filteredJobs = sampleJobs.filter((job) => {
-    const matchesCategory = selectedCategory === "All" || job.category === selectedCategory;
-    const matchesType = selectedType === "All" || job.type === selectedType;
-    const matchesSearch =
-      job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.location.toLowerCase().includes(searchQuery.toLowerCase());
+      try {
+        const { data } = await jobService.getJobs({
+          search: searchQuery,
+          category: selectedCategory,
+          type: selectedType,
+        });
 
-    return matchesCategory && matchesType && matchesSearch;
-  });
+        setJobs(data.jobs || []);
+      } catch (err) {
+        setError(err.response?.data?.message || err.message || "Failed to fetch jobs");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, [selectedCategory, selectedType, searchQuery]);
+
+  const filteredJobs = jobs;
 
   return (
     <main className="jobs-page">
       <div className="jobs-page__container">
+        {loading && (
+          <div className="jobs-page__status jobs-page__status--loading">
+            Loading jobs...
+          </div>
+        )}
+        {error && (
+          <div className="jobs-page__status jobs-page__status--error">
+            {error}
+          </div>
+        )}
         {/* Header */}
         <div className="jobs-page__header">
           <h1>Find Your Next Opportunity</h1>
@@ -180,7 +127,7 @@ const Jobs = () => {
             {filteredJobs.length > 0 ? (
               <div className="jobs-grid">
                 {filteredJobs.map((job) => (
-                  <JobCard key={job.id} job={job} />
+                  <JobCard key={job._id || job.id} job={job} />
                 ))}
               </div>
             ) : (
